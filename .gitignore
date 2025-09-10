@@ -1,0 +1,21 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+
+# -- Virtual envoronment --
+.venv/
+venv/
+env/
+
+# -- IDE --
+.vscode/
+
+# -- macOS --
+.DS_Store
+
+# -- Linux --
+*~
+
+# -- Docker --
+*.pid
+*.pid.lock
