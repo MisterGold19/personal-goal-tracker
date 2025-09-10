@@ -50,9 +50,72 @@ Projekt jest w fazie początkowej
 - [ ] Reports
 - [ ] Deployment & Docs
 
+## Dependencies
+
+I use **Poetry** for dependency management and locking
+
+### Runtime
+
+- fastapi
+- uvicorn[standard]
+- pydantic>=2
+- sqlalchemy>=2
+- alembic
+- psycopg[binary]
+- python-dotenv
+- structlog
+- prometheus-client
+
+### Dev
+
+- pytest
+- pytest-asyncio
+- httpx
+- mypy
+- ruff
+- black
+- types-requests
+
 ## Quickstart
 
-Instrukcja pojawi się później
+### Fresh setup (clean environment)
+
+```bash
+pip install poetry
+poetry install
+```
+
+For dev tooling:
+```poetry install --with dev```
+
+### Verify installation
+
+After installation, run:
+
+```bash
+poetry run python -c "import fastapi, sqlalchemy, alembic"
+```
+
+this should exit with `0`
+
+### Lockfile
+
+The repository includes a `poetry.lock` file which pins exact versions.
+To refresh the lockfile, run:
+
+```bash
+poetry lock
+```
+
+### Makefile
+
+Common comands:
+
+- `make install` - install runtime + dev dependencies
+- `make lock` - regenerate `poetry.lock`
+- `make test` - run tests
+- `make fmt` - format code (black)
+- `make lint` - lint code(ruff)
 
 ## Contributing
 
