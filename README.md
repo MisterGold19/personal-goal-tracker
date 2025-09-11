@@ -111,11 +111,16 @@ poetry lock
 
 Common comands:
 
+- `make help` - show list of comands
 - `make install` - install runtime + dev dependencies
 - `make lock` - regenerate `poetry.lock`
 - `make test` - run tests
+- `make cov` - run tests with coverage
 - `make fmt` - format code (black)
 - `make lint` - lint code(ruff)
+- `make type` - check the types
+- `make ready-to-commit` - run make fmt, lint and type
+- `make run` - run the application
 
 ## Contributing
 

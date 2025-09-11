@@ -1,21 +1,40 @@
 # Use bash for better error handling
 SHELL := /usr/bin/env bash
-.PHONY: install install-prod lock test fmt lint
+.PHONY: install lock test cov fmt lint type run
 
-# Instalacja wszystkiego do pracy lokalnej (runtime + dev)
-install:
+help: ## Pokaż listę dostępnych komend
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+	awk -F ':.*?## ' '{printf "%-15s %s\n", $$1, $$2}'
+
+install: ## Instalacja wszystkiego do pracy lokalnej (runtime + dev)
 	poetry install --with dev
 
-# Odświeżenie lockfile (zablokowanie wersji)
-lock:
+lock: ## Odświeżenie lockfile (zablokowanie wersji)
 	poetry lock
 
-# Szybkie testy
-test:
-	poetry run pytest -q
+test: ## Szybkie testy
+	poetry run pytest -q || [ $$? -eq 5 ]
+# $? = komenda specjalna w bashu - kod wyjścia ostatnio uruchomionej komendy
+# $$? = $ w makefile używa sie do zmiennych Make. Aby przekazać $ do shella trzeba podwoić $$
+# -eq = equals, używa się do porównania liczb
+# 5 = kod wyjscia pytest, jeśli nie ma testów
+# [ ... ] = sprawdzenie warunku logicznego
 
-# Formatowanie i lint
-fmt:
+cov: ## Testy z pokryciem
+	pytest --cov=app --cov-report=term-missing || [ $$? -eq 5 ]
+
+fmt: ## Formatowanie
 	poetry run black .
-lint:
+lint: ## Lint
 	poetry run ruff check .
+
+type: ## Sprawdzanie typów
+	mypy --strict app
+
+ready-to-commit:
+	make fmt && make lint && make type
+
+run: # Uruchomienie aplikacji
+	uvicorn app.main:app --reload
+
+

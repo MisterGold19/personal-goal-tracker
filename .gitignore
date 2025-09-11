@@ -19,3 +19,6 @@ env/
 # -- Docker --
 *.pid
 *.pid.lock
+
+# -- Coverage pytest --
+.coverage
