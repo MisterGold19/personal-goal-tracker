@@ -31,10 +31,9 @@ lint: ## Lint
 type: ## Sprawdzanie typów
 	mypy --strict app
 
-ready-to-commit:
+ready-to-commit: ## Prepare to comit
 	make fmt && make lint && make type
 
 run: # Uruchomienie aplikacji
 	uvicorn app.main:app --reload
-
 

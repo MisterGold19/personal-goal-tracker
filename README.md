@@ -78,7 +78,9 @@ I use **Poetry** for dependency management and locking
 
 ## Quickstart
 
-### Fresh setup (clean environment)
+### Local setup (Poetry)
+
+Fresh setup (clean environment)
 
 ```bash
 pip install poetry
@@ -87,6 +89,20 @@ poetry install
 
 For dev tooling:
 ```poetry install --with dev```
+
+### Docker setup
+
+Build the image:
+
+```bash
+docker build -t pgt-api:dev .
+```
+
+Run the container (default port 8000):
+
+```bash
+docker run --rm -p 8000:8000 pgt-api:dev
+```
 
 ### Verify installation
 
