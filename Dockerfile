@@ -14,8 +14,13 @@ WORKDIR /app
 # install poetry as root
 
 # version for python-slim
+#always update + install + cleanup in one RUN
+
 RUN set -eux; \
-    groupadd -r appgroup \
+    apt-get update \
+    && apt-get install -y --no-install-recommends curl ca-certificates \
+    && rm -rf /var/lib/apt/lists* \
+    && groupadd -r appgroup \
     && useradd -r -g appgroup -m -d /home/appuser appuser \
     && pip install --upgrade pip poetry \
     && chown -R appuser:appgroup /app

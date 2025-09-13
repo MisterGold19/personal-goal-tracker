@@ -10,3 +10,8 @@ placeholder_router = APIRouter(prefix="/api/v1")
 
 # Podpięcie routera do aplikacji
 app.include_router(placeholder_router)
+
+
+@app.get("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}
