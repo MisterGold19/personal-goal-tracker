@@ -83,6 +83,7 @@ I use **Poetry** for dependency management and locking
 Fresh setup (clean environment)
 
 ```bash
+python3 -m pip install --user poetry
 pip install poetry
 poetry install
 ```
