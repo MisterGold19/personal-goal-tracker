@@ -92,6 +92,16 @@ For dev tooling:
 
 ### Docker setup
 
+#### Environment configuration
+
+Before running the container for the first time, copy the example environment file:
+
+```bash
+cp --update=none .env.example .env
+```
+
+In case you already have .env, parameter `-n` exists, so it's not overwriting your .env file (just for safe)
+
 Build the image:
 
 ```bash
