@@ -21,7 +21,7 @@ test: ## Szybkie testy
 # [ ... ] = sprawdzenie warunku logicznego
 
 cov: ## Testy z pokryciem
-	pytest --cov=app --cov-report=term-missing || [ $$? -eq 5 ]
+	poetry pytest --cov=app --cov-report=term-missing || [ $$? -eq 5 ]
 
 fmt: ## Formatowanie
 	poetry run black .
@@ -29,7 +29,7 @@ lint: ## Lint
 	poetry run ruff check .
 
 type: ## Sprawdzanie typów
-	mypy --strict app
+	poetry run mypy --strict app
 
 ready-to-commit: ## Prepare to comit
 	make fmt && make lint && make type

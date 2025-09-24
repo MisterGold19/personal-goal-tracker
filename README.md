@@ -82,14 +82,24 @@ I use **Poetry** for dependency management and locking
 
 Fresh setup (clean environment)
 
+Make sure Poetry is installed globally.
+On Ubuntu/Debian you can install it via:
+
 ```bash
-python3 -m pip install --user poetry
-pip install poetry
-poetry install
+sudo apt install python3-poetry
+```
+
+Check installation:
+
+```bash
+poetry --version
 ```
 
 For dev tooling:
 ```poetry install --with dev```
+
+Poetry will automatically create a virtual environment in the project folder (`.venv/`).
+You don’t need to activate it manually – use `poetry run ...` or the provided Makefile targets.
 
 ### Docker setup
 
