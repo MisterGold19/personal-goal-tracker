@@ -115,17 +115,30 @@ cp --update=none .env.example .env
 
 In case you already have .env, parameter `-n` exists, so it's not overwriting your .env file (just for safe)
 
-Build the image:
+Build the image and run containers:
 
 ```bash
-docker build -t pgt-api:dev .
+docker compose up --build
 ```
 
-Run the container (default port 8000):
+To check in env was read:
 
 ```bash
-docker run --rm -p 8000:8000 pgt-api:dev
+docker compose config
 ```
+
+### Environment Variables
+
+The application uses the following environment variables (loaded automatically from .env or passed via Docker Compose):
+
+VARIABLE          | DESCRIPTION                                      | DEFINED MANUALY OR .ENV.EXAMPLE
+POSTGRES_USER     | PostgreSQL username                              | MANUALY
+POSTGRES_PASSWORD | PostgreSQL password                              | MANUALY
+POSTGRES_DB       | PostgreSQL database name                         | MANUALY
+ENV               | Environment mode (`dev`, `prod`, …)              | .ENV.EXAMPLE
+APP_VERSION       | Application version string, exposed in `/health` | .ENV.EXAMPLE
+LOG_LEVEL         | Logging level                                    | .ENV.EXAMPLE
+DATABASE_URL      | Application version string, exposed in /health   | .ENV.EXAMPLE
 
 ### Verify installation
 
