@@ -101,6 +101,8 @@ For dev tooling:
 Poetry will automatically create a virtual environment in the project folder (`.venv/`).
 You don’t need to activate it manually – use `poetry run ...` or the provided Makefile targets.
 
+Use `poetry shell` before running scripts.
+
 ### Docker setup
 
 #### Environment configuration

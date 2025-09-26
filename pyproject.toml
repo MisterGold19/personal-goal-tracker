@@ -17,6 +17,7 @@ psycopg = { extras = ["binary"], version = ">=3.2.10,<4.0.0" }
 python-dotenv = ">=1.1.1,<2.0.0"
 structlog = ">=25.4.0,<26.0.0"
 prometheus-client = ">=0.22.1,<0.23.0"
+pydantic-settings = "^2.11.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.2"
