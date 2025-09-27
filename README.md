@@ -131,14 +131,15 @@ docker compose config
 
 The application uses the following environment variables (loaded automatically from .env or passed via Docker Compose):
 
-VARIABLE          | DESCRIPTION                                      | DEFINED MANUALY OR .ENV.EXAMPLE
-POSTGRES_USER     | PostgreSQL username                              | MANUALY
-POSTGRES_PASSWORD | PostgreSQL password                              | MANUALY
-POSTGRES_DB       | PostgreSQL database name                         | MANUALY
-ENV               | Environment mode (`dev`, `prod`, …)              | .ENV.EXAMPLE
-APP_VERSION       | Application version string, exposed in `/health` | .ENV.EXAMPLE
-LOG_LEVEL         | Logging level                                    | .ENV.EXAMPLE
-DATABASE_URL      | Application version string, exposed in /health   | .ENV.EXAMPLE
+| Variable          | Description                                      | Defined manually or in `.env.example` |
+|-------------------|--------------------------------------------------|----------------------------------------|
+| `POSTGRES_USER`     | PostgreSQL username                              | Manually                               |
+| `POSTGRES_PASSWORD` | PostgreSQL password                              | Manually                               |
+| `POSTGRES_DB`       | PostgreSQL database name                         | Manually                               |
+| `ENV`               | Environment mode (`dev`, `prod`, …)              | `.env.example`                         |
+| `APP_VERSION`       | Application version string, exposed in `/health` | `.env.example`                         |
+| `LOG_LEVEL`         | Logging level                                    | `.env.example`                         |
+| `DATABASE_URL`      | PostgreSQL connection string (used by the app)   | `.env.example`                         |
 
 ### Verify installation
 
