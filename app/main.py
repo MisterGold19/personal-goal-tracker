@@ -23,7 +23,7 @@ def basic_get() -> dict[str, str]:
 
 @app.get("/health")
 def health() -> dict[str, str]:
-    logger.info("health_check_started")
+    logger.info("request_completed")
     return {"status": "ok", "app_version": settings.APP_VERSION}
 
 
