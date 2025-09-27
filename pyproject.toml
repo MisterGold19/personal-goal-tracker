@@ -5,6 +5,7 @@ description = ""
 authors = ["MisterGold19 <ivan.kuzenkov.public@gmail.com>"]
 readme = "README.md"
 package-mode = false
+packages = [{ include = "app" }]
 
 [tool.poetry.dependencies]
 python = "^3.12"

@@ -13,7 +13,7 @@ lock: ## Odświeżenie lockfile (zablokowanie wersji)
 	poetry lock
 
 test: ## Szybkie testy
-	poetry run pytest -q || [ $$? -eq 5 ]
+	PYTHONPATH=. poetry run pytest -q || [ $$? -eq 5 ]
 # $? = komenda specjalna w bashu - kod wyjścia ostatnio uruchomionej komendy
 # $$? = $ w makefile używa sie do zmiennych Make. Aby przekazać $ do shella trzeba podwoić $$
 # -eq = equals, używa się do porównania liczb
