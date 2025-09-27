@@ -98,6 +98,12 @@ poetry --version
 For dev tooling:
 ```poetry install --with dev```
 
+As a developer you can add a new package via
+
+```bash
+poetry add < package_name >
+```
+
 Poetry will automatically create a virtual environment in the project folder (`.venv/`).
 You don’t need to activate it manually – use `poetry run ...` or the provided Makefile targets.
 
