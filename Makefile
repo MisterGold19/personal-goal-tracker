@@ -32,7 +32,7 @@ type: ## Sprawdzanie typów
 	poetry run mypy --strict app
 
 ready-to-commit: ## Prepare to comit
-	make fmt && make lint && make type
+	make test && make fmt && make lint && make type
 
 run: # Uruchomienie aplikacji
 	uvicorn app.main:app --reload

@@ -30,6 +30,7 @@ def utc_now_z() -> str:
 @placeholder_router.get(
     "/health", response_model=HealthResponse, summary="Health check endpoint"
 )
+@app.get("/health", response_model=HealthResponse, summary="Health check endpoint")
 def health() -> HealthResponse:
     logger.debug("health_debug_probe")
     return HealthResponse(
@@ -44,11 +45,6 @@ app.include_router(placeholder_router)
 @app.get("/")
 def basic_get() -> dict[str, str]:
     return {"status": "ok"}
-
-
-# @app.get("/health")
-# def health() -> dict[str, str]:
-#     return {"status": "ok", "app_version": settings.APP_VERSION}
 
 
 @app.get("/favicon.ico", include_in_schema=False)
