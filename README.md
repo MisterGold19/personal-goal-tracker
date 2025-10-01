@@ -147,6 +147,28 @@ The application uses the following environment variables (loaded automatically f
 | `LOG_LEVEL`         | Logging level                                    | `.env.example`                         |
 | `DATABASE_URL`      | PostgreSQL connection string (used by the app)   | `.env.example`                         |
 
+### Metrics (Prometheus)
+
+The application exposesPrometheus metrics at:
+
+[http://localhost:8000/metrics](http://localhost:8000/metrics)
+
+The endpoint is available outside the API router (not under `/api/v1/...`, but directly at the root) so that monitoring systems can scrape it easily.
+
+#### Quick test
+
+```bash
+curl -s localhost:8000/metrics | grep python_info
+```
+
+Example output:
+
+```bash
+# HELP python_info Python platform information
+# TYPE python_info gauge
+python_info{implementation="CPython",major="3",minor="12",patchlevel="3",version="3.12.3"} 1.0
+```
+
 ### Verify installation
 
 After installation, run:
