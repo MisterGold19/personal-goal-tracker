@@ -1,45 +1,47 @@
 # run via uvicorn app.main:app --reload
 # --reload - tryb developerski- nie musze ręcznie restartować serwer za każdym razem
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI
 from fastapi.responses import FileResponse
-from .core.config import settings
-from .core.logging import logger, RequestIdMiddleware
+from .core.logging import RequestIdMiddleware
 from pathlib import Path
-from datetime import datetime, timezone
-from pydantic import BaseModel, Field
-from typing import Literal
-
-# uvicorn potrzebuje instancji FastAPi
-# uvicorn - to serwer
-app = FastAPI()
-app.add_middleware(RequestIdMiddleware)  # podpięcie middleware
-
-placeholder_router = APIRouter(prefix="/api/v1")
+from .metrics import setup_metrics_endpoint, setup_metrics_middleware
+from .health.schemas import HealthResponse
+from app.health.routes import router, health as routes_health
 
 
-class HealthResponse(BaseModel):
-    status: Literal["ok"] = Field("ok")
-    version: str = Field("v0.1.0")
-    time_utc: str = Field("2025-09-27T19:44:35Z")
+def create_app() -> FastAPI:
+    # uvicorn potrzebuje instancji FastAPi
+    # uvicorn - to serwer
+    app = FastAPI(title="PGT")
+    app.add_middleware(RequestIdMiddleware)  # podpięcie middleware
+    setup_metrics_middleware(app)
+    setup_metrics_endpoint(app)
+
+    app.include_router(router)
+
+    return app
 
 
-def utc_now_z() -> str:
-    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+app = create_app()
 
 
-@placeholder_router.get(
-    "/health", response_model=HealthResponse, summary="Health check endpoint"
-)
+# def utc_now_z() -> str:
+#     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+# @placeholder_router.get(
+#     "/health", response_model=HealthResponse, summary="Health check endpoint"
+# )
 @app.get("/health", response_model=HealthResponse, summary="Health check endpoint")
 def health() -> HealthResponse:
-    logger.debug("health_debug_probe")
-    return HealthResponse(
-        status="ok", version=settings.APP_VERSION, time_utc=utc_now_z()
-    )
+    return routes_health()
 
 
-# Podpięcie routera do aplikacji
-app.include_router(placeholder_router)
+# def health() -> HealthResponse:
+#     logger.debug("health_debug_probe")
+#     return HealthResponse(
+#         status="ok", version=settings.APP_VERSION, time_utc=utc_now_z()
+#     )
 
 
 @app.get("/")
