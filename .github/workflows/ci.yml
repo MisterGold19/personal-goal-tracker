@@ -1,3 +1,7 @@
+# Oficjalny katalog akcji:
+# https://github.com/marketplace?type=actions
+
+
 name: CI
 
 on: [push, pull_request]
@@ -9,5 +13,28 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Hello World
-        run: echo "Workflow działa"
+      - name: Setup Python 3.12 & cache pip
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+          cache: 'poetry'
+          cache-dependency-path: "poetry.lock"
+
+      - name: Install poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+
+      - name: Install dependencies (poetry)
+        run: |
+          poetry --version
+          poetry install --no-inteructions --no-ansi --with dev
+
+      - name: Make lint, type, test (fmt as well)
+        run: make ready-to-commit
+
+
+
