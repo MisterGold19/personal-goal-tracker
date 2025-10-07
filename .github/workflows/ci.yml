@@ -35,7 +35,7 @@ jobs:
         run: |
           command -v poetry || which poetry
           poetry --version
-          poetry install --no-interaction --no-ansi --with-dev
+          poetry install --no-interaction --no-ansi --with dev
 
       - name: Make lint, type, test (fmt as well)
         run: make ready-to-commit
