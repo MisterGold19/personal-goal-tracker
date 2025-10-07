@@ -1,6 +1,6 @@
 # Personal Goals Tracker
 
-[![CI](https://github.com/MisterGold19/personal-goal-tracker/actions/workflows/ci.yml/badge.svg?branch=pgt-12-ci-skeleton)](https://github.com/MisterGold19/personal-goal-tracker/actions/workflows/ci.yml)
+[![CI](https://github.com/MisterGold19/personal-goal-tracker/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/MisterGold19/personal-goal-tracker/actions/workflows/ci.yml)
 
 ## Overview
 
