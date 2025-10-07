@@ -28,15 +28,14 @@ jobs:
           virtualenvs-in-project: true
           installer-parallel: true
 
-      - name: Ensure poetry is on path
+      - name: Ensure poetry is on PATH
         run: echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Install dependencies (poetry)
+      - name: Install dependencies (Poetry)
         run: |
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-          echo "PATH after update:"
-          echo "$PATH"
-          ls -la "$HOME/.local/bin" || true
+          command -v poetry || which poetry
+          poetry --version
+          poetry install --no-interaction--no-ansi --with-dev
 
       - name: Make lint, type, test (fmt as well)
         run: make ready-to-commit

@@ -21,7 +21,7 @@ test: ## Szybkie testy
 # [ ... ] = sprawdzenie warunku logicznego
 
 cov: ## Testy z pokryciem
-	poetry pytest --cov=app --cov-report=term-missing || [ $$? -eq 5 ]
+	poetry run pytest --cov=app --cov-report=term-missing || [ $$? -eq 5 ]
 
 fmt: ## Formatowanie
 	poetry run black .
